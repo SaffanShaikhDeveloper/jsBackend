@@ -5,7 +5,16 @@ dotenv.config({
   path: "./env",
 });
 
-connectDB();
+const port = process.env.PORT || 8000;
+connectDB() //returning promise
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Server is running at port: ${port}`);
+    });
+  })
+  .catch((err) => {
+    console.log("MONGO DB Connection Failed !!!", err);
+  });
 
 /* import express from "express";
 //IIFE (Immediately Invoked Function Expression) function works same as normal function but we not need to name it and call it.... as the file loads this effe function run automatically

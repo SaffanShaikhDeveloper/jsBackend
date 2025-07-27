@@ -1,0 +1,11 @@
+//Standardized the Response Object for API responses means this porperties message will only send or print
+
+class ApiResponse {
+  constructor(statusCode, data, message = "Success") {
+    this.statusCode = statusCode;
+    this.data = data;
+    this.message = message;
+    // we are setting our own assumption that statuscode < 400 is is for all type of response giving and more then that status code is send by ApiError as it will considered as error response
+    this.success = statusCode < 400; // Assuming success for status codes < 400
+  }
+}
